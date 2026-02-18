@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { saveTokens, saveUser } from "../../utils/auth";
 
 export default function LoginForm() {
   const [form, setForm] = useState({
@@ -16,7 +17,6 @@ export default function LoginForm() {
       ...form,
       [name]: type === "checkbox" ? checked : value,
     });
-    // Clear error when user starts typing
     if (error) setError("");
   };
 
@@ -28,11 +28,10 @@ export default function LoginForm() {
     try {
       const baseUrl = import.meta.env.VITE_API_BASE_URL;
       const serviceId = import.meta.env.VITE_SERVICE_ID;
+
       const response = await fetch(`${baseUrl}api/v1/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: form.email,
           password: form.password,
@@ -46,16 +45,29 @@ export default function LoginForm() {
         throw new Error(data.message || "Login failed");
       }
 
-      // Success - store token and redirect
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-      }
+      // ── Simpan access_token, refresh_token, dan data user ──
+      // Struktur response: data.data.tokens & data.data.user
+      saveTokens(data.data.tokens);
+      saveUser(data.data.user);
 
-      // Redirect to dashboard or home
+      // Redirect ke dashboard
       window.location.href = "/dashboard";
     } catch (err) {
-      setError(err.message || "An error occurred during login");
+      // Handle network/SSL errors
+      if (err instanceof TypeError) {
+        if (err.message.includes("Failed to fetch")) {
+          setError(
+            "Cannot connect to server. Please check:\n" +
+              "1. API URL is correct\n" +
+              "2. Server is running\n" +
+              "3. SSL certificate is valid (or use HTTP for development)",
+          );
+        } else {
+          setError("Network error: " + err.message);
+        }
+      } else {
+        setError(err.message || "An error occurred during login");
+      }
       console.error("Login error:", err);
     } finally {
       setLoading(false);
