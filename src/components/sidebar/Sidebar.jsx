@@ -23,7 +23,11 @@ const Sidebar = () => {
           <span className="nav-section-title">Main Menu</span>
           <ul>
             <li className="nav-item">
-              <a href="/dashboard" className="nav-link active" onClick={closeSidebar}>
+              <a
+                href="/dashboard"
+                className="nav-link active"
+                onClick={closeSidebar}
+              >
                 <svg
                   className="nav-icon"
                   viewBox="0 0 24 24"
