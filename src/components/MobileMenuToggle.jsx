@@ -1,6 +1,10 @@
+import { useSidebar } from "../contexts/SidebarContext";
+
 const MobileMenuToggle = () => {
+  const { toggleSidebar } = useSidebar();
+
   return (
-    <button className="mobile-menu-toggle">
+    <button className="mobile-menu-toggle" onClick={toggleSidebar}>
       <svg
         viewBox="0 0 24 24"
         fill="none"

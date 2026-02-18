@@ -1,10 +1,12 @@
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/navbar/Navbar";
+import SidebarOverlay from "../components/SidebarOverlay";
 
-const DashboardLayout = ({ children }) => {
+const ContentLayout = ({ children }) => {
   return (
     <div className="dashboard">
       <Sidebar />
+      <SidebarOverlay />
 
       <main className="main-content">
         <Navbar />
@@ -14,4 +16,4 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+export default ContentLayout;

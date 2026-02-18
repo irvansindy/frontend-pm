@@ -1,4 +1,4 @@
-import DashboardLayout from "../layouts/DashboardLayout";
+import ContentLayout from "../layouts/ContentLayout";
 import StatsGrid from "../components/dashboard/StatsGrid";
 import RevenueAnalytics from "../components/dashboard/RevenueAnalytics";
 import RecentActivity from "../components/dashboard/RecentActivity";
@@ -6,20 +6,20 @@ import RecentTransactions from "../components/dashboard/RecentTransactions";
 
 const Dashboard = () => {
   return (
-    <DashboardLayout>
+    <ContentLayout>
       <StatsGrid />
       <section className="content-grid">
         <RevenueAnalytics />
         <RecentActivity />
         <RecentTransactions />
       </section>
-    </DashboardLayout>
+    </ContentLayout>
   );
 };
 
 export default Dashboard;
 
-// import DashboardLayout from "../layouts/DashboardLayout";
+// import ContentLayout from "../layouts/ContentLayout";
 // import StatsGrid from "../components/dashboard/StatsGrid";
 // import RevenueAnalytics from "../components/dashboard/RevenueAnalytics";
 // import RecentActivity from "../components/dashboard/RecentActivity";
@@ -28,7 +28,7 @@ export default Dashboard;
 
 // const Dashboard = () => {
 //   return (
-//     <DashboardLayout>
+//     <ContentLayout>
 //       <StatsGrid />
 //       <section className="content-grid">
 //         <RevenueAnalytics />
@@ -39,7 +39,7 @@ export default Dashboard;
 
 //         <RecentTransactions />
 //       </section>
-//     </DashboardLayout>
+//     </ContentLayout>
 //   );
 // };
 

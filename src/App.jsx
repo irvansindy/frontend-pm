@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Partners from "./pages/Partners";
 import ProtectedRoute from "./router/ProtectedRoute";
 import PublicRoute from "./router/PublicRoute";
+import { SidebarProvider } from "./contexts/SidebarContext";
 
 import MobileMenuToggle from "./components/MobileMenuToggle";
 import SiteFooter from "./components/SiteFooter";
@@ -39,38 +40,42 @@ function PublicLayout() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* ─── PUBLIC ROUTES ─── */}
-        <Route
-          element={
-            <PublicRoute>
-              <PublicLayout />
-            </PublicRoute>
-          }
-        >
-          <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
+    <SidebarProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* ─── PUBLIC ROUTES ─── */}
+          <Route
+            element={
+              <PublicRoute>
+                <PublicLayout />
+              </PublicRoute>
+            }
+          >
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/partners" element={<Partners />} />
+          </Route>
 
-        {/* ─── PROTECTED ROUTES ─── */}
-        {/* Semua route di dalam ini otomatis protected */}
-        <Route
-          element={
-            <ProtectedRoute>
-              <ProtectedLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="/partners" element={<Partners />} />
+          {/* ─── PROTECTED ROUTES ─── */}
+          {/* Semua route di dalam ini otomatis protected */}
+          <Route
+            element={
+              <ProtectedRoute>
+                <ProtectedLayout />
+              </ProtectedRoute>
+            }
+          >
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            {/* <Route path="/partners" element={<Partners />} /> */}
 
-          {/* Contoh menambah route baru yang protected: */}
-          {/* <Route path="/users" element={<Users />} /> */}
-          {/* <Route path="/settings/permissions" element={<Permissions />} /> */}
-          {/* <Route path="/settings/approval" element={<ApprovalSettings />} /> */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            {/* Contoh menambah route baru yang protected: */}
+            {/* <Route path="/users" element={<Users />} /> */}
+            {/* <Route path="/settings/permissions" element={<Permissions />} /> */}
+            {/* <Route path="/settings/approval" element={<ApprovalSettings />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </SidebarProvider>
   );
 }
 

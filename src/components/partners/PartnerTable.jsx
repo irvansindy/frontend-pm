@@ -77,7 +77,7 @@ const PartnerTable = ({ partners, onEdit, onDelete, onOpenModal }) => {
                   <td>
                     <span
                       className={`status-badge ${getStatusBadgeClass(
-                        partner.status
+                        partner.status,
                       )}`}
                     >
                       {getStatusLabel(partner.status)}
@@ -106,7 +106,10 @@ const PartnerTable = ({ partners, onEdit, onDelete, onOpenModal }) => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" style={{ textAlign: "center", padding: "2rem" }}>
+                <td
+                  colSpan="7"
+                  style={{ textAlign: "center", padding: "2rem" }}
+                >
                   No partners found
                 </td>
               </tr>

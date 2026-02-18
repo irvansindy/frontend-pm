@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import DashboardLayout from "../layouts/DashboardLayout";
+import ContentLayout from "../layouts/ContentLayout";
 import PartnerTable from "../components/partners/PartnerTable";
 import PartnerModal from "../components/partners/PartnerModal";
 
@@ -95,8 +95,8 @@ const Partners = () => {
       // Update existing partner
       setPartners((prev) =>
         prev.map((p) =>
-          p.id === editingPartner.id ? { ...formData, id: p.id } : p
-        )
+          p.id === editingPartner.id ? { ...formData, id: p.id } : p,
+        ),
       );
     } else {
       // Add new partner
@@ -116,10 +116,10 @@ const Partners = () => {
   };
 
   return (
-    <DashboardLayout>
-      <div className="page-header">
+    <ContentLayout>
+      {/* <div className="page-header">
         <h1>Partners</h1>
-      </div>
+      </div> */}
       <section className="content-section">
         <PartnerTable
           partners={partners}
@@ -135,7 +135,7 @@ const Partners = () => {
         onSubmit={handleSubmit}
         partner={editingPartner}
       />
-    </DashboardLayout>
+    </ContentLayout>
   );
 };
 
