@@ -52,8 +52,8 @@ function App() {
             }
           >
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/partners" element={<Partners />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/partners" element={<Partners />} /> */}
           </Route>
 
           {/* ─── PROTECTED ROUTES ─── */}
@@ -65,8 +65,8 @@ function App() {
               </ProtectedRoute>
             }
           >
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            {/* <Route path="/partners" element={<Partners />} /> */}
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/partners" element={<Partners />} />
 
             {/* Contoh menambah route baru yang protected: */}
             {/* <Route path="/users" element={<Users />} /> */}
